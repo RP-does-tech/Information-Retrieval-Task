@@ -5,6 +5,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
 
 
 # ==========================================
@@ -130,7 +133,7 @@ st.markdown("""
 
 @st.cache_data
 def load_data():
-    return pd.read_csv("data/processed_resources.csv")
+    return pd.read_csv(BASE_DIR / "data" / "processed_resources.csv")
 
 
 df = load_data()
@@ -158,7 +161,7 @@ with st.sidebar:
     # University Logo (centred, not clickable/downloadable)
     with st.container(horizontal_alignment="center", key="sidebar_logo"):
         st.image(
-            "assets/university_logo.png",
+            str(BASE_DIR / "assets" / "university_logo.png"),
             width=120
         )
 
